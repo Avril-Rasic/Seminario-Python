@@ -30,8 +30,6 @@ questions_to_ask = random.choices(list(zip(questions, answers, correct_answers_i
 user_score = 0
 
 for questions, answers, correct_answers_index in questions_to_ask:
-    #Se selcciona una pregunta aleatoria 
-    question_index = random.randint(0, len(questions) - 1)
 
     #Se muestra la pregunta y las respuestas posibles 
     print(questions)
