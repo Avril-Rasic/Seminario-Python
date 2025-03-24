@@ -21,32 +21,37 @@ answers = [
     ("=","==","!=","==="),
 ]
 #Indice de las respuestas cprrecta para cada pregunta, en el mismo orden que las preguntas
-
 correct_answers_index = [1, 2, 0, 3, 1]
+
+#selecciona preguntas aleatoria 
+questions_to_ask = random.choices(list(zip(questions, answers, correct_answers_index)),k=3)
 
 #El usuario debera contestar 3 preguntas
 user_score = 0
-for _ in range(3):
+
+for questions, answers, correct_answers_index in questions_to_ask:
     #Se selcciona una pregunta aleatoria 
     question_index = random.randint(0, len(questions) - 1)
 
     #Se muestra la pregunta y las respuestas posibles 
-    print(questions[question_index])
-    for i, answer in enumerate(answers[question_index]):
+    print(questions)
+    for i, answer in enumerate(answers):
         print(f"{i + 1}. {answer}")
 
     #El usuario tiene 2 intentos para responder correctamente
     
     for intento in range(2):
         user_answer = input("respuesta: ")
+
         #veo si la rspuesta es correcta
         if (user_answer in ["1", "2", "3", "4"]):
             user_answer = int(user_answer) - 1
         else: 
             print("Respuesta invalida")
             exit(1)
+
         #Se verifica si la respuesta es correcta
-        if user_answer == correct_answers_index[question_index]:
+        if user_answer == correct_answers_index:
             print("Correcto!!")
             user_score += 1
             break
@@ -54,7 +59,7 @@ for _ in range(3):
             #Si el usuario no responde correctamente despues de 2 intentos 
             #Se muestra la respuesta correcta
             print("Incorrecto. La respuesta correcta es: ")
-            print(answers[question_index][correct_answers_index[question_index]])
+            print(answers[correct_answers_index])
             user_score -= 0.5
 
     #imprimo los puntos que gano
